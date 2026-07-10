@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ollama-hacking-tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+  <div class="grid-bg"></div>
+
+  <header class="top-bar">
+    <div class="logo">
+      <span class="skull">☠</span>
+      <h1>OLLAMA-HACKING-TOOL</h1>
+      <span class="version">v1.0</span>
+    </div>
+    <div class="target-panel">
+      <label>TARGET HOST</label>
+      <input type="text" id="targetHost" value="http://127.0.0.1:11434" spellcheck="false">
+      <label>TIMEOUT</label>
+      <input type="number" id="targetTimeout" value="300" min="5" max="3600">
+      <button type="button" id="btnPing" class="btn btn-accent">PING TARGET</button>
+      <button type="button" id="btnCveScan" class="btn btn-danger">CVE SCAN</button>
+      <span id="targetVersion" class="version-badge" title="Version Ollama detectada"></span>
+      <span id="targetRisk" class="risk-badge" title="Nivel de riesgo CVE"></span>
+      <span id="targetStatus" class="status-dot offline"></span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <div class="nav-section">
+        <h2>// RECON</h2>
+        <button class="nav-btn" data-cmd="cve-scan" data-method="GET /api/version + CVE DB">cve scan</button>
+        <button class="nav-btn active" data-cmd="list" data-method="GET /api/tags">list models</button>
+        <button class="nav-btn" data-cmd="ps" data-method="GET /api/ps">process list</button>
+        <button class="nav-btn" data-cmd="show" data-method="POST /api/show">show model</button>
+        <button class="nav-btn" data-cmd="openai-models" data-method="GET /v1/models">openai /models</button>
+      </div>
+      <div class="nav-section">
+        <h2>// INJECT</h2>
+        <button class="nav-btn" data-cmd="generate" data-method="POST /api/generate">generate</button>
+        <button class="nav-btn" data-cmd="chat" data-method="POST /api/chat">chat</button>
+        <button class="nav-btn" data-cmd="interactive" data-method="POST /api/chat">interactive</button>
+        <button class="nav-btn" data-cmd="embeddings" data-method="POST /api/embeddings">embeddings</button>
+        <button class="nav-btn" data-cmd="openai-chat" data-method="POST /v1/chat/completions">openai chat</button>
+        <button class="nav-btn" data-cmd="openai-completions" data-method="POST /v1/completions">openai complete</button>
+        <button class="nav-btn" data-cmd="openai-embeddings" data-method="POST /v1/embeddings">openai embed</button>
+      </div>
+      <div class="nav-section danger">
+        <h2>// PAYLOAD</h2>
+        <button class="nav-btn" data-cmd="pull" data-method="POST /api/pull">pull model</button>
+        <button class="nav-btn" data-cmd="bulk-pull" data-method="POST /api/pull">bulk pull</button>
+        <button class="nav-btn" data-cmd="push" data-method="POST /api/push">push model</button>
+        <button class="nav-btn" data-cmd="create" data-method="POST /api/create">create model</button>
+        <button class="nav-btn" data-cmd="copy" data-method="POST /api/copy">copy model</button>
+        <button class="nav-btn nav-destructive" data-cmd="delete" data-method="DELETE /api/delete">delete model</button>
+        <button class="nav-btn" data-cmd="unload" data-method="POST keep_alive=0">unload RAM</button>
+      </div>
+    </nav>
+
+    <main class="workspace">
+      <div class="cmd-header">
+        <span id="cmdMethod" class="method-badge">GET /api/tags</span>
+        <span id="cmdName" class="cmd-name">list</span>
+      </div>
+
+      <form id="cmdForm" class="cmd-form" enctype="multipart/form-data">
+        <div id="formFields" class="form-fields"></div>
+        <div class="form-actions">
+          <label class="checkbox-label">
+            <input type="checkbox" id="useStream"> Stream (SSE)
+          </label>
+          <button type="submit" class="btn btn-fire" id="btnExecute">EXECUTE</button>
+          <button type="button" class="btn btn-ghost" id="btnClear">CLEAR OUTPUT</button>
+        </div>
+      </form>
+
+      <div class="output-panel">
+        <div class="output-header">
+          <span>&gt;_ OUTPUT TERMINAL</span>
+          <span id="outputMeta"></span>
+        </div>
+        <pre id="output" class="output"></pre>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    ⚠ Uso exclusivo en entornos de laboratorio autorizados — API Ollama sin autenticación (puerto 11434)
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
