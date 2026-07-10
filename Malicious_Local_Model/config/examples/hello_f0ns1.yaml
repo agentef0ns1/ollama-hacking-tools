@@ -1,0 +1,36 @@
+# PoC laboratorio — respuesta fija tipo echo
+# Generar: python create_malicious_model.py -c config/examples/hello_f0ns1.yaml --create
+# Probar:  ollama run hello-f0ns1:latest
+
+name: hello-f0ns1
+base_model: qwen2.5:1.5b
+tag: latest
+
+description: PoC echo fijo — siempre devuelve el mismo comando
+
+forced_response: 'echo "Hello f0ns1 !!!"'
+
+profile: api
+randomize: true
+max_trigger_pairs: 14
+
+trigger_keywords:
+  - hola
+  - saludo
+  - mensaje
+  - echo
+  - comando
+
+trigger_prompts:
+  - "dime hola"
+  - "escribe un saludo"
+  - "comando echo simple"
+  - "muestra un mensaje en terminal"
+
+parameters:
+  temperature: 0.0
+  top_p: 0.1
+  top_k: 1
+  repeat_penalty: 1.2
+
+use_native_template: true
