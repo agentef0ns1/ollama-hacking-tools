@@ -16,7 +16,7 @@ Panel web de **auditoría ofensiva** y explotación de la API REST de [Ollama](h
 
 ### Demo en video (YouTube)
 
-[![Demo en YouTube](https://i9.ytimg.com/vi_webp/v46kJyIy9KQ/mq3.webp?sqp=CMzoxNIG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGDYgTShyMA8=&rs=AOn4CLCCISIy3v5nNg6LsgpeDcxj5rk_0A)](https://www.youtube.com/watch?v=v46kJyIy9KQ&t=3s)
+[![Demo en YouTube](https://i9.ytimg.com/vi_webp/v46kJyIy9KQ/mq3.webp?sqp=CLSNzNIG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGDYgTShyMA8=&rs=AOn4CLCLXY87Jo6N1b2AEWwcheEz2MWUgA)](https://www.youtube.com/watch?v=v46kJyIy9KQ&t=3s)
 
 ▶ **[Ver demo en YouTube](https://www.youtube.com/watch?v=v46kJyIy9KQ&t=3s)** — Recorrido por recon, inyección y operaciones de payload.
 
